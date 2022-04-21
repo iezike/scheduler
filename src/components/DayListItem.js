@@ -1,11 +1,11 @@
 import React from "react";
 import "./DayListItem.scss";
-import classNames from "classnames";
+import classNames from "classnames"; // This library helps to handle className specification based on conditions for styling purposes.
 
 
 
 export default function DayListItem(props) {
-  const formatSpots = spots => {
+  const formatSpots = spots => { // helper function for conditional display text.
     if (!spots) {
       return `no spots remaining`;
     }
