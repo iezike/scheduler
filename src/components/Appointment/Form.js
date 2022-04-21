@@ -1,4 +1,5 @@
-import InterviewList from "components/InterviewerList";
+import React from "react";
+import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
 
 export default function Form() {
@@ -17,9 +18,7 @@ export default function Form() {
           */
           />
         </form>
-        <InterviewerList
-        /* your code goes here */
-        />
+
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">

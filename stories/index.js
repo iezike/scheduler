@@ -19,6 +19,7 @@ import Show from "components/Appointment/Show";
 import Confirm from "components/Appointment/Confirm";
 import Status from "components/Appointment/Status";
 import Error from "components/Appointment/Error";
+import Form from "components/Appointment/Form";
 
 // Add various stories for our Components
 storiesOf("Button", module) // stories for Button component
@@ -48,7 +49,7 @@ storiesOf("DayListItem", module) // stories for DayListItem component
     <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} />
   ));
 
-  //mock data
+//mock data
 const days = [
   {
     id: 1,
@@ -115,15 +116,15 @@ storiesOf("InterviewerListItem", module) // stories for InterviewerListItem comp
   ));
 
 
-  // mock datat
-  const interviewers = [
-    { id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
-    { id: 2, name: "Tori Malcolm", avatar: "https://i.imgur.com/Nmx0Qxo.png" },
-    { id: 3, name: "Mildred Nazir", avatar: "https://i.imgur.com/T2WwVfS.png" },
-    { id: 4, name: "Cohana Roy", avatar: "https://i.imgur.com/FK8V841.jpg" },
-    { id: 5, name: "Sven Jones", avatar: "https://i.imgur.com/twYrpay.jpg" }
-  ];
-  
+// mock datat
+const interviewers = [
+  { id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
+  { id: 2, name: "Tori Malcolm", avatar: "https://i.imgur.com/Nmx0Qxo.png" },
+  { id: 3, name: "Mildred Nazir", avatar: "https://i.imgur.com/T2WwVfS.png" },
+  { id: 4, name: "Cohana Roy", avatar: "https://i.imgur.com/FK8V841.jpg" },
+  { id: 5, name: "Sven Jones", avatar: "https://i.imgur.com/twYrpay.jpg" }
+];
+
 storiesOf("InterviewerList", module) // stories for InterviewerList component
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -155,7 +156,7 @@ storiesOf("Appointment", module) // stories for Appointment (index) component an
   .add("Header", () => <Header time="12pm" />)
   .add("Empty", () => <Empty onAdd={action("onAdd")} />)
   .add("Show", () => (
-    <Show 
+    <Show
       student="Lydia Miller-Jones"
       interviewer={interviewer}
       onEdit={action("onEdit")}
@@ -163,21 +164,37 @@ storiesOf("Appointment", module) // stories for Appointment (index) component an
     />
   ))
   .add("Confirm", () => (
-    <Confirm 
+    <Confirm
       message="Delete the appointment?"
       onConfirm={action("onConfirm")}
       onCancel={action("onCancel")}
     />
   ))
-  .add("Status", () =>(
+  .add("Status", () => (
     <Status
       message="Deleting"
     />
   ))
-  .add("Error", () =>(
+  .add("Error", () => (
     <Error
       message="Could not delete appointment."
       onClose={action("onClose")}
+    />
+  ))
+  .add("Edit", () => (
+    <Form
+      student="John Ikenna"
+      interviewer={1}
+      interviewers={[]}
+      onSave="Function"
+      onCancel="Function"
+    />
+  ))
+  .add("Create", () => (
+    <Form
+      interviewers={[]}
+      onSave="Function"
+      onCancel="Function"
     />
   ))
 
