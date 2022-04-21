@@ -2,6 +2,7 @@ import React, {useState} from "react";
 
 import "components/Application.scss";
 import DayList from "./DayList";
+import InterviewList from "./InterviewerList";
 const days = [
   {
     id: 1,
@@ -34,8 +35,8 @@ export default function Application(props) {
         <nav className="sidebar__menu">
           <DayList
             days={days}
-            day={day}
-            setDay={setDay}
+            value={day}
+            onChange={setDay}
           />
         </nav>
         <img
