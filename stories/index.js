@@ -6,6 +6,7 @@ import { action } from "@storybook/addon-actions";
 import "index.scss";
 import "../src/components/Appointment/styles.scss";
 
+
 import Button from "components/Button";
 import DayListItem from "components/DayListItem.js";
 import DayList from "components/DayList";
@@ -15,9 +16,10 @@ import Appointment from "components/Appointment";
 import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty";
 import Show from "components/Appointment/Show";
+import Confirm from "components/Appointment/Confirm";
 
-
-storiesOf("Button", module)
+// Add various stories for our Components
+storiesOf("Button", module) // stories for Button component
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
   })
@@ -33,7 +35,7 @@ storiesOf("Button", module)
     </Button>
   ));
 
-storiesOf("DayListItem", module)
+storiesOf("DayListItem", module) // stories for DayListItem component
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
   })
@@ -44,6 +46,7 @@ storiesOf("DayListItem", module)
     <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} />
   ));
 
+  //mock data
 const days = [
   {
     id: 1,
@@ -62,7 +65,7 @@ const days = [
   },
 ];
 
-storiesOf("DayList", module)
+storiesOf("DayList", module) // stories for DayList component
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
   })
@@ -82,7 +85,7 @@ const interviewer = {
   avatar: "https://i.imgur.com/LpaY82x.png"
 };
 
-storiesOf("InterviewerListItem", module)
+storiesOf("InterviewerListItem", module) // stories for InterviewerListItem component
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
   })
@@ -110,6 +113,7 @@ storiesOf("InterviewerListItem", module)
   ));
 
 
+  // mock datat
   const interviewers = [
     { id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
     { id: 2, name: "Tori Malcolm", avatar: "https://i.imgur.com/Nmx0Qxo.png" },
@@ -118,7 +122,7 @@ storiesOf("InterviewerListItem", module)
     { id: 5, name: "Sven Jones", avatar: "https://i.imgur.com/twYrpay.jpg" }
   ];
   
-storiesOf("InterviewerList", module)
+storiesOf("InterviewerList", module) // stories for InterviewerList component
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
   })
@@ -140,7 +144,7 @@ storiesOf("InterviewerList", module)
     />
   ));
 
-storiesOf("Appointment", module)
+storiesOf("Appointment", module) // stories for Appointment (index) component and its children components
   .addParameters({
     backgrounds: [{ name: "white", value: "#fff", default: true }]
   })
@@ -148,11 +152,6 @@ storiesOf("Appointment", module)
   .add("Appointment with time", () => <Appointment time="12pm" />)
   .add("Header", () => <Header time="12pm" />)
   .add("Empty", () => <Empty onAdd={action("onAdd")} />)
-
-storiesOf("Show", module)
-  .addParameters({
-    backgrounds: [{name: "white", value: "#fff", default: true}]
-  })
   .add("Show", () => (
     <Show 
       student="Lydia Miller-Jones"
@@ -160,4 +159,12 @@ storiesOf("Show", module)
       onEdit={action("onEdit")}
       onDelete={action("onDelete")}
     />
-  )) 
+  ))
+  .add("Confirm", () => (
+    <Confirm 
+      message="Delete the appointment?"
+      onConfirm={action("onConfirm")}
+      onCancel={action("onCancel")}
+    />
+  ))
+
