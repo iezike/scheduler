@@ -184,17 +184,19 @@ storiesOf("Appointment", module) // stories for Appointment (index) component an
   .add("Edit", () => (
     <Form
       student="John Ikenna"
-      interviewer={1}
-      interviewers={[]}
-      onSave="Function"
-      onCancel="Function"
+      interviewer={interviewer.id}
+      interviewers={interviewers}
+      onSave={action("onSave")}
+      onCancel={action("onCancel")}
     />
   ))
   .add("Create", () => (
     <Form
-      interviewers={[]}
-      onSave="Function"
-      onCancel="Function"
+      interviewers={interviewers}
+      onSave={action("onSave")}
+      onCancel={action("onCancel")}
     />
   ))
+
+  
 
