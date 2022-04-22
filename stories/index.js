@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react"; // Fragment helps to group a list of children without adding extra nodes to the DOM.
 
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
@@ -7,19 +7,19 @@ import "index.scss";
 import "../src/components/Appointment/styles.scss";
 
 
-import Button from "components/Button";
-import DayListItem from "components/DayListItem.js";
-import DayList from "components/DayList";
 import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewerList"
 import Appointment from "components/Appointment";
-import Header from "components/Appointment/Header";
-import Empty from "components/Appointment/Empty";
-import Show from "components/Appointment/Show";
+import DayList from "components/DayList";
+import DayListItem from "components/DayListItem.js";
 import Confirm from "components/Appointment/Confirm";
+import Button from "components/Button";
+import Header from "components/Appointment/Header";
 import Status from "components/Appointment/Status";
+import Empty from "components/Appointment/Empty";
 import Error from "components/Appointment/Error";
 import Form from "components/Appointment/Form";
+import Show from "components/Appointment/Show";
 
 // Add various stories for our Components
 storiesOf("Button", module) // stories for Button component
@@ -197,6 +197,11 @@ storiesOf("Appointment", module) // stories for Appointment (index) component an
       onCancel={action("onCancel")}
     />
   ))
-
+  .add("Appointment Empty", () => (
+    <Fragment>
+      <Appointment id={1} time="4pm" />
+      <Appointment time="5pm" />
+    </Fragment>
+  ))
   
 
