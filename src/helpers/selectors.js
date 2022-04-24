@@ -11,5 +11,12 @@ export function getAppointmentsForDay(state, day) {
 
 
 export function getInterview(state, interview) {
-  
+  if(!interview) {
+    return null
+  }
+  //From state interviewers, retrive interviewer based on its id in interview parameter
+  const interviewer = Object.values(state.interviewers).find(interviewer => interviewer.id === interview.interviewer);
+
+  //update the interviewer property in interview and return the new object 
+  return {...interview, interviewer: interviewer}
 }
