@@ -8,3 +8,8 @@ export function getAppointmentsForDay(state, day) {
   // From the days.appointmeents retrive the state appointment for each id 
   return appointments; // appointments is an array
 }
+
+
+export function getInterview(state, interview) {
+  
+}
