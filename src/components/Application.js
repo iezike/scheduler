@@ -7,7 +7,7 @@ import DayList from "./DayList";
 import InterviewList from "./InterviewerList";
 import Appointment from "./Appointment";
 import { getAppointmentsForDay, getInterview } from "helpers/selectors";
-
+import useVisualMode from "../hooks/useVisualMode"
 
 export default function Application(props) {
   //define state variables
@@ -18,8 +18,11 @@ export default function Application(props) {
     interviewers: {}
   })
 
+// get daily appointments as an array
   const dailyAppointments = getAppointmentsForDay(state, state.day);
-  const schedule = state.appointments.map((appointment) => {
+  const interviewers = [];
+
+  const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     return (
       <Appointment
@@ -27,9 +30,12 @@ export default function Application(props) {
         id={appointment.id}
         time={appointment.time}
         interview={interview}
+        interviewers = {interviewers}
       />
     );
   });
+
+  console.log("schedule", schedule)
 
   const setDay = day => setState({ ...state, day });
   //useEffect as a hook
@@ -69,11 +75,7 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule" >
-        {dailyAppointments.map(appointment =>
-          <Appointment
-            key={appointment.id}
-            {...appointment}
-          />)}
+        {schedule}
         <Appointment key="last" time="5pm" />
       </section>
     </main>
