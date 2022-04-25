@@ -18,10 +18,10 @@ export default function Application(props) {
     interviewers: {}
   })
 
-// get daily appointments as an array
-  const dailyAppointments = getAppointmentsForDay(state, state.day);
   const interviewers = [];
 
+
+  const dailyAppointments = getAppointmentsForDay(state, state.day); // get daily appointments as an array
   const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     return (
@@ -34,8 +34,6 @@ export default function Application(props) {
       />
     );
   });
-
-  console.log("schedule", schedule)
 
   const setDay = day => setState({ ...state, day });
   //useEffect as a hook

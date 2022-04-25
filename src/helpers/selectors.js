@@ -10,6 +10,7 @@ export function getAppointmentsForDay(state, day) {
 }
 
 
+// helper function to retrieve interview in the right format
 export function getInterview(state, interview) {
   if(!interview) {
     return null
