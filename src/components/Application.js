@@ -4,22 +4,32 @@ import axios from "axios";
 //import dependency files
 import "components/Application.scss";
 import DayList from "./DayList";
-import InterviewList from "./InterviewerList";
+// import InterviewList from "./InterviewerList";
 import Appointment from "./Appointment";
 import { getAppointmentsForDay, getInterview } from "helpers/selectors";
-import useVisualMode from "../hooks/useVisualMode"
+// import useVisualMode from "../hooks/useVisualMode"
 
 export default function Application(props) {
   //define state variables
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    appointments: {},
+    appointments: {
+      "1": {
+        id: 1,
+        time: "12pm",
+        interview: null
+      }
+    },
     interviewers: {}
   })
 
   const interviewers = [];
 
+
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+  }
 
   const dailyAppointments = getAppointmentsForDay(state, state.day); // get daily appointments as an array
   const schedule = dailyAppointments.map((appointment) => {
@@ -30,7 +40,8 @@ export default function Application(props) {
         id={appointment.id}
         time={appointment.time}
         interview={interview}
-        interviewers = {interviewers}
+        interviewers={interviewers}
+        bookInterview={bookInterview}
       />
     );
   });
