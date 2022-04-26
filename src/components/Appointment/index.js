@@ -4,26 +4,33 @@ import Header from "./Header";
 import Form from "./Form";
 import Show from "./Show";
 import Empty from "./Empty";
+import Status from "./Status";
 import useVisualMode from "../../../src/hooks/useVisualMode"
 
 
 export default function Appointment(props) {
+  // mode options
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
+  const SAVING = "SAVING";
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
+
   function save(name, interviewer) {
-    const interview = {
-      student: name,
-      interviewer
-    };
-    props.bookInterview(props.id, interview)
-    .then(() => {
-      transition(SHOW);
-    })
+    if(name && interviewer) {
+      transition(SAVING) //transition to saving mode(with a message) for pessimistic rendering
+      const interview = {
+        student: name,
+        interviewer
+      };
+      props.bookInterview(props.id, interview)
+        .then(() => {
+          transition(SHOW);  //transition to show mode when promise is resolved
+        });
+    }
   }
 
   return (
@@ -44,6 +51,11 @@ export default function Appointment(props) {
           onCancel={back}
           onSave={save}
         />}
+      {mode === SAVING && (
+        <Status
+          message={SAVING}
+        />
+      )}
     </article>
   );
 }
