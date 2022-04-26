@@ -15,23 +15,10 @@ export default function Application(props) {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    appointments: {
-      "1": {
-        id: 1,
-        time: "12pm",
-        interview: null
-      }
-    },
+    appointments: {},
     interviewers: {}
   })
 
-  const { mode, transition, back } = useVisualMode(
-    props.interview ? "SHOW" : "EMPTY"
-  );
-  const interviewers = getInterviewersForDay(state, state.day);
-
-
- 
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -41,11 +28,13 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
-    setState({...state, appointments});
+    return axios.put(`http://localhost:8001/api/appointments/${id}`, {interview})
+    .then(() => {
+      setState({...state, appointments});
+    });
   }
 
-
-
+  const interviewers = getInterviewersForDay(state, state.day);
   const dailyAppointments = getAppointmentsForDay(state, state.day); // get daily appointments as an array
   const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);

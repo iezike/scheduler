@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import "./styles.scss"
 import Header from "./Header";
 import Form from "./Form";
@@ -11,7 +10,7 @@ import useVisualMode from "../../../src/hooks/useVisualMode"
 export default function Appointment(props) {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
-  const CREATE= "CREATE";
+  const CREATE = "CREATE";
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
@@ -21,13 +20,11 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-    const id = 4
-    props.bookInterview(id, interview);
-
-    transition(SHOW);
+    props.bookInterview(props.id, interview)
+    .then(() => {
+      transition(SHOW);
+    })
   }
-
-
 
   return (
     <article className="appointment">
