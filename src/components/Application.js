@@ -6,8 +6,9 @@ import "components/Application.scss";
 import DayList from "./DayList";
 // import InterviewList from "./InterviewerList";
 import Appointment from "./Appointment";
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
-// import useVisualMode from "../hooks/useVisualMode"
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
+// import Show from "./Appointment/Show";
+import useVisualMode from "../hooks/useVisualMode"
 
 export default function Application(props) {
   //define state variables
@@ -24,19 +25,26 @@ export default function Application(props) {
     interviewers: {}
   })
 
-  const interviewers = [];
+  const { mode, transition, back } = useVisualMode(
+    props.interview ? "SHOW" : "EMPTY"
+  );
+  const interviewers = getInterviewersForDay(state, state.day);
 
 
+ 
   function bookInterview(id, interview) {
-    console.log(id, interview);
-  }
-  
-  function save(name, interviewer) {
-    const interview = {
-      student: name,
-      interviewer
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
     };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    setState({...state, appointments});
   }
+
+
 
   const dailyAppointments = getAppointmentsForDay(state, state.day); // get daily appointments as an array
   const schedule = dailyAppointments.map((appointment) => {
@@ -52,7 +60,7 @@ export default function Application(props) {
       />
     );
   });
-
+  
   const setDay = day => setState({ ...state, day });
   //useEffect as a hook
   useEffect(() => {

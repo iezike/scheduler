@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import "./styles.scss"
 import Header from "./Header";
 import Form from "./Form";
@@ -15,7 +16,19 @@ export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-  
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+    const id = 4
+    props.bookInterview(id, interview);
+
+    transition(SHOW);
+  }
+
+
+
   return (
     <article className="appointment">
       <Header time={props.time} />
@@ -32,6 +45,7 @@ export default function Appointment(props) {
           value={props.value}
           interviewers={props.interviewers}
           onCancel={back}
+          onSave={save}
         />}
     </article>
   );
