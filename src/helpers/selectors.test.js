@@ -1,4 +1,4 @@
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 
 const state = {
@@ -6,12 +6,14 @@ const state = {
     {
       id: 1,
       name: "Monday",
-      appointments: [1, 2, 3]
+      appointments: [1, 2, 3],
+      interviewers: [1, 2, 3]
     },
     {
       id: 2,
       name: "Tuesday",
-      appointments: [4, 5]
+      appointments: [4, 5],
+      interviewers: [4, 5]
     }
   ],
   appointments: {
@@ -30,7 +32,7 @@ const state = {
     }
   },
   interviewers: {
-    "1": {  
+    "1": {
       "id": 1,
       "name": "Sylvia Palmer",
       "avatar": "https://i.imgur.com/LpaY82x.png"
@@ -39,15 +41,30 @@ const state = {
       id: 2,
       name: "Tori Malcolm",
       avatar: "https://i.imgur.com/Nmx0Qxo.png"
+    },
+    "3": {
+      id: 3,
+      name: "Tony",
+      avatar: "https://i.imgur.com/Nmx0Qxo.png"
+    },
+    "4": {
+      id: 4,
+      name: "Tori",
+      avatar: "https://i.imgur.com/Nmx0Qxo.png"
+    },
+    "5": {
+      id: 5,
+      name: "Malcolm",
+      avatar: "https://i.imgur.com/Nmx0Qxo.png"
     }
   }
 };
+
 // tests for getAppointmentsForDay function
 test("getAppointmentsForDay returns an array", () => {
   const result = getAppointmentsForDay(state, "Monday");
   expect(Array.isArray(result)).toBe(true);
 });
-
 
 test("getAppointmentsForDay returns an array with a length matching the number of appointments for that day", () => {
   const result = getAppointmentsForDay(state, "Monday");
