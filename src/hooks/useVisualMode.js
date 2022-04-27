@@ -32,26 +32,4 @@ export default function useVisualMode(initial) {
   return {mode, transition, back} 
 }
 
-// export default function useVisualMode(initial) {
-//   const [mode, setMode] = useState(initial);
-//   const [history, setHistory] = useState([initial]);
-
-//   function transition(newMode) {
-//     setMode(newMode);
-//     let newHistory = [...history];
-//     newHistory.push(newMode);
-//     setHistory(newHistory);
-//   }
-//   //create a back function to transition back to previous mode
-//   function back() {
-//     const newHistory = [...history];
-//     newHistory.pop();
-//     // ensure that history array is not empty, then...
-//     if(newHistory.length >= 1) {
-//       setMode(newHistory[newHistory.length - 1]);
-//       setHistory(newHistory);
-//     } 
-//   }
-//   return {mode, transition, back} 
-// }
 

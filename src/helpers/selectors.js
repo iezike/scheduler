@@ -32,3 +32,4 @@ export function getInterview(state, interview) {
   //update the interviewer property in interview and return the new object 
   return { ...interview, interviewer: interviewer }
 }
+
