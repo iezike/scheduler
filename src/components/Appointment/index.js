@@ -37,15 +37,10 @@ export default function Appointment(props) {
     }
   }
 
-  const deleteAppointment = function () {
-    transition(CONFIRM);
-  }
-
   const remove = function () {
     props.cancelInterview(props.id)
     transition(EMPTY);
   }
-
 
 
   return (
@@ -56,7 +51,8 @@ export default function Appointment(props) {
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
-          onDelete={deleteAppointment}
+          onDelete={() => transition(CONFIRM)}
+          onEdit={() => transition(EDIT)}
         />
       )}
       {mode === CREATE &&
@@ -83,6 +79,14 @@ export default function Appointment(props) {
           message="Confirm to remove appointment"
         />
       )}
+      {mode === EDIT &&
+        <Form
+          name={props.name}
+          value={props.value}
+          interviewers={props.interviewers}
+          onCancel={back}
+          onSave={save}
+        />}
     </article>
   );
 }

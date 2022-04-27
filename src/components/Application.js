@@ -8,7 +8,7 @@ import DayList from "./DayList";
 import Appointment from "./Appointment";
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 // import Show from "./Appointment/Show";
-import useVisualMode from "../hooks/useVisualMode"
+// import useVisualMode from "../hooks/useVisualMode"
 
 export default function Application(props) {
   //define state variables
