@@ -29,10 +29,10 @@ export default function useApplicationData() {
   function updateSpotsDay(id) {
     const day = state.days.find(day => day.appointments.includes(id));
     const incrementDay = state.appointments[id].interview;
-    if(incrementDay) {
-      day.spots +=1;
+    if (incrementDay) {
+      day.spots += 1;
     } else {
-      day.spots -=1;
+      day.spots -= 1;
     }
     const days = [...state.days];
     days[day.id - 1] = day;
@@ -52,7 +52,7 @@ export default function useApplicationData() {
     const days = updateSpotsDay(id);
     return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview })
       .then(() => {
-        setState({ ...state, appointments, days});
+        setState({ ...state, appointments, days });
       });
   }
 
@@ -67,12 +67,12 @@ export default function useApplicationData() {
       [id]: appointment
     };
     const days = updateSpotsDay(id);
-    axios.delete(`http://localhost:8001/api/appointments/${id}`)
+    return axios.delete(`http://localhost:8001/api/appointments/${id}`)
       .then(() => {
-        setState({ ...state, appointments, days});
+        setState({ ...state, appointments, days });
       });
   }
-   
+
   return {
     state,
     setDay,

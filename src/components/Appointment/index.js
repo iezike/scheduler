@@ -42,9 +42,10 @@ export default function Appointment(props) {
   }
 
   const remove = function () {
+    transition(DELETING, true);
     props.cancelInterview(props.id)
-    // .catch(() => transition(ERROR_DELETE, true))
-    transition(EMPTY);
+      .then(() => transition(EMPTY))
+      .catch(() => transition(ERROR_DELETE, true)); // Error handling
   }
 
   return (
@@ -79,6 +80,7 @@ export default function Appointment(props) {
       )}
       {mode === CONFIRM && (
         <Confirm
+          onCancel={back}
           onConfirm={remove}
           message="Confirm to remove appointment"
         />
