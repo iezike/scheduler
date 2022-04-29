@@ -19,7 +19,7 @@ Also, for quality assurance, the project follows best practices of Test Driven D
 
 
 ### App shows list of days and available interview spots
-!['book-an-appointment']()
+!['book-an-appointment'](public/images/daysView.png)
 _A user can choose any empty slot to book an appointment
 
 ### Enter student name and select an interviewer from the list to book an appointment
@@ -34,7 +34,7 @@ _U user is prompted to confirm before deleting an appointment
 _Dynamic count notifies a user when no time available in an expected day.
 
 ### App optimized user experience
-!['book-an-appointment']()
+!['book-an-appointment'](public/images/show.mov)
 _Easy to navigate.
 
 
