@@ -34,7 +34,7 @@ describe("Appointment", () => {
     cy.contains("Deleting").should("exist");
     cy.contains("Deleting").should("not.exist");
     cy.contains(".appointment__card--show", "Archie Cohen")
-    .should("not.exist");
+      .should("not.exist");
   })
 
 })
