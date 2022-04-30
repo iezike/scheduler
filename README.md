@@ -23,19 +23,19 @@ Also, for quality assurance, the project follows best practices of Test Driven D
 _A user can choose any empty slot to book an appointment
 
 ### Enter student name and select an interviewer from the list to book an appointment
-!['book-an-appointment']()
+!['book-an-appointment'](public/images/booking.png)
 
 ### Deleting an appointment
-!['book-an-appointment']()
+!['book-an-appointment'](public/images/warning.png)
 _U user is prompted to confirm before deleting an appointment
 
 ### Fully booked
-!['book-an-appointment']()
+!['book-an-appointment'](public/images/fully_booked.png)
 _Dynamic count notifies a user when no time available in an expected day.
 
-### App optimized user experience
-!['book-an-appointment'](public/images/show.mov)
-_Easy to navigate.
+### Appointment Deleted and spots updated
+!['book-an-appointment'](public/images/interview_deleted.png)
+-App optimized user experience
 
 
 ## API server/Database Setup
