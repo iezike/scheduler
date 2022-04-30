@@ -12,7 +12,7 @@ export function getAppointmentsForDay(state, day) {
 export function getInterviewersForDay(state, day) {
   let interviewers = [];
   //From state.days filter day where days name matches the day parameter 
-  const days = state.days.find(d => d.name === day) // days is an object
+  const days = state.days.find(d => d.name === day); // days is an object
   if (days) {
     interviewers = days.interviewers.map(id => state.interviewers[id]);
   }
@@ -20,16 +20,15 @@ export function getInterviewersForDay(state, day) {
   return interviewers; // interviewers is an array
 }
 
-
 // helper function to retrieve interview in the right format
 export function getInterview(state, interview) {
   if (!interview) {
-    return null
+    return null;
   }
   //From state interviewers, retrive interviewer based on its id in interview parameter
   const interviewer = Object.values(state.interviewers).find(interviewer => interviewer.id === interview.interviewer);
 
   //update the interviewer property in interview and return the new object 
-  return { ...interview, interviewer: interviewer }
+  return { ...interview, interviewer: interviewer };
 }
 

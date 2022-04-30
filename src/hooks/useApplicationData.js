@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function useApplicationData() {
@@ -8,7 +8,7 @@ export default function useApplicationData() {
     days: [],
     appointments: {},
     interviewers: {}
-  })
+  });
 
   const setDay = day => setState({ ...state, day });
   //useEffect as a hook
@@ -25,17 +25,21 @@ export default function useApplicationData() {
       });
   }, []);
 
-  //helper function to increase or decrease number of spots remaining
-  function updateSpotsDay(id) {
-    const day = state.days.find(day => day.appointments.includes(id));
-    const incrementDay = state.appointments[id].interview;
-    if (incrementDay) {
-      day.spots += 1;
-    } else {
-      day.spots -= 1;
-    }
-    const days = [...state.days];
-    days[day.id - 1] = day;
+  //helper function to update number of spots remaining
+  function updateSpotsDay(id, newAppointments) {
+    const days = state.days.map((day) => {
+      const newDay = {...day};
+      if(newDay.name === state.day) {
+        let spots = 0;
+        newDay.appointments.map((appointmentID) => {
+          if(!newAppointments[appointmentID].interview) {
+            spots += 1;
+          }
+        })
+        newDay.spots = spots;
+      }
+      return newDay;
+    });
     return days;
   }
 
@@ -49,7 +53,7 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
-    const days = updateSpotsDay(id);
+    const days = updateSpotsDay(id, appointments);
     return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview })
       .then(() => {
         setState({ ...state, appointments, days });
@@ -66,7 +70,7 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
-    const days = updateSpotsDay(id);
+    const days = updateSpotsDay(id, appointments);
     return axios.delete(`http://localhost:8001/api/appointments/${id}`)
       .then(() => {
         setState({ ...state, appointments, days });

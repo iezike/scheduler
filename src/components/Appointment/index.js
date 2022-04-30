@@ -1,12 +1,12 @@
 import React from "react";
-import "./styles.scss"
+import "./styles.scss";
 import Header from "./Header";
 import Form from "./Form";
 import Show from "./Show";
 import Empty from "./Empty";
 import Status from "./Status";
 import Error from "./Error";
-import useVisualMode from "../../../src/hooks/useVisualMode"
+import useVisualMode from "../../../src/hooks/useVisualMode";
 import Confirm from "./Confirm";
 
 
@@ -35,7 +35,7 @@ export default function Appointment(props) {
       };
       props.bookInterview(props.id, interview)
         .then(() => {
-          transition(SHOW)  //transition to show mode when promise is resolved
+          transition(SHOW);  //transition to show mode when promise is resolved
         })
         .catch(() => transition(ERROR_SAVE, true)); // Error handling
     }
@@ -88,7 +88,7 @@ export default function Appointment(props) {
       {mode === EDIT &&
         <Form
           name={props.name}
-          value={props.value}
+          interviewer={props.value}
           interviewers={props.interviewers}
           onCancel={back}
           onSave={save}
