@@ -12,7 +12,7 @@ export default function DayListItem(props) {
     }
     return `${spots} spots remaining`;
   }
-
+  // handles styling for a day on selected from the list
   const dayClass = classNames('day-list__item', {
     'day-list__item--selected': props.selected,
     'day-list__item--full': !props.spots

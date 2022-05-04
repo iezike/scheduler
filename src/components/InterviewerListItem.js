@@ -3,9 +3,12 @@ import "./InterviewerListItem.scss";
 import classNames from "classnames";
 
 export default function InterviewerListItem(props) {
+    // handles styling for an interviewer on selected from the list
   const interviewerStyles = classNames("interviewers__item", {
     "interviewers__item--selected": props.selected,
   })
+
+  // handles styling for interviewer image on selected
   const imageStyles = classNames("interviewers__item-image", {
     "interviewers__item--selected-image": props.selected,
   })

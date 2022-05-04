@@ -35,6 +35,7 @@ export default function useApplicationData() {
           if(!newAppointments[appointmentID].interview) {
             spots += 1;
           }
+          return spots
         })
         newDay.spots = spots;
       }

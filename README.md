@@ -59,4 +59,22 @@ __Back-End:__  Node.js, Express and PostgreSQL
 __Testing:__ Storybook, Webpack Dev Server, Jest, Testing Libraries from Cypress
 
 ## Dependencies
-- See package.json file for details.
+- Axios
+- Classnames
+- Normalize.css
+- React
+- React-dom
+- React-scripts
+- Babel/core
+- Storybook/addon-actions
+- Storybook/addon-backgrounds
+- Storybook/addon-links
+- Storybook/addons
+- Storybook/react
+- Testing-library/jest-dom
+- Testing-library/react
+- Testing-library/react-hooks
+- Babel-loader
+- Node-sass
+- Prop-types
+- React-test-renderer
